@@ -19,4 +19,31 @@ async function getCardsData() {
     }
     return cards
 }
-getCardsData().then(pokemon => console.log(pokemon.map(p => p.getPokemonName())));  
+getCardsData().then(pokemon => console.log(pokemon.map(p => p.getPokemonName()))); 
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function gameLogic() {
+    const selectedCard = []
+    const addSelectedCard = (cardId) => {
+        selectedCard.push(cardId)
+    }
+    const resetSelectedCards = () => {
+        selectedCard.length = 0
+    }
+    const isCardSelected = (cardId) => {
+        return selectedCard.includes(cardId)
+    }
+    return {
+        addSelectedCard,
+        resetSelectedCards,
+        isCardSelected
+    }
+}
+export { getCardsData, shuffleArray, gameLogic };
