@@ -1,11 +1,14 @@
 import { useState } from 'react'
 
 
-function Cards({ card, handleCardClick }) {
+
+function Card({ name, id, picture, onClick }) {
   return (
-    <div className="card" onClick={() => handleCardClick(card.id)}>
-      <img src={card.image} alt={card.name} />
-      <p>{card.name}</p>
+    <div className="card" id={id} onClick={onClick}>
+      <img src={picture} alt={name} />
+      <p>{name}</p>
     </div>
   )
 }
+
+export default Card

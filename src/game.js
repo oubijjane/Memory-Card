@@ -19,7 +19,8 @@ async function getCardsData() {
     }
     return cards
 }
-getCardsData().then(pokemon => console.log(pokemon.map(p => p.getPokemonName()))); 
+
+
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
