@@ -30,21 +30,5 @@ function shuffleArray(array) {
     return array;
 }
 
-function gameLogic() {
-    const selectedCard = []
-    const addSelectedCard = (cardId) => {
-        selectedCard.push(cardId)
-    }
-    const resetSelectedCards = () => {
-        selectedCard.length = 0
-    }
-    const isCardSelected = (cardId) => {
-        return selectedCard.includes(cardId)
-    }
-    return {
-        addSelectedCard,
-        resetSelectedCards,
-        isCardSelected
-    }
-}
-export { getCardsData, shuffleArray, gameLogic };
+
+export { getCardsData, shuffleArray };

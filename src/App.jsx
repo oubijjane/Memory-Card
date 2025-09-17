@@ -3,12 +3,12 @@ import { useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Cards from './cards.jsx'
-import { getCardsData, shuffleArray, gameLogic } from './game.js'
+import { getCardsData, shuffleArray } from './game.js'
 import './App.css'
 
 
 function App() {
-  const pokemons = getPokemons();
+  const pokemons = usePokemons();
   const [visible, setVisible] = useState([]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
@@ -17,7 +17,7 @@ function App() {
 
  useEffect(() => {
     if (pokemons.length) setVisible(getRandomCards(pokemons));
-  }, [pokemons]); // to start with a random 10 when pokemons are loaded
+  }, [pokemons]); // to start with a random 8 when pokemons are loaded
 
   const reshuffle = () => setVisible(getRandomCards(pokemons));
   const onCardClick = (e) => {
@@ -32,15 +32,34 @@ function App() {
 
   return (
     <>
-      <h1>Memory Card Game</h1>
+      <Title text="Pokémon Memory Challenge" />
+      <Description text="Test your memory skills by spotting 
+        each Pokémon only once! A deck of 50 different Pokémon is 
+        shuffled every round. Click a card to reveal it and score a point, 
+        but choose the same Pokémon twice and your streak resets. Try to 
+        reach the highest score before your memory slips!" />
       <ScoreBoard score={score} bestScore={bestScore} />
-      <button onClick={reshuffle}>New Random 10</button>
+      <button onClick={reshuffle}>reshuffle</button>
      <CardList cards={visible} onCardClick={onCardClick} />
     </>
   );
 }
 
-function getPokemons() {
+function Title({ text, className }) {
+  return (
+    <div className={className}>
+      <h1>{text}</h1>
+    </div>
+  );
+}
+function Description({ text, className }) {
+  return (
+    <div className={className}>
+      <h2>{text}</h2>
+    </div>
+  );
+}
+function usePokemons() {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
@@ -50,7 +69,7 @@ function getPokemons() {
   return pokemons;
 }
 
-function getRandomCards(array, count = 10) {
+function getRandomCards(array, count = 8) {
   return shuffleArray(array).slice(0, count);
 }
 
