@@ -51,7 +51,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-color: #282c34;
-  color: white;
+  color: rgb(90, 90, 90);
   background-image: url('./assets/background.jpeg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
